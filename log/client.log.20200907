@@ -1,0 +1,31 @@
+[15:11:23.340][Infos][Init]Starting pprof server on address 0.0.0.0:59960
+[15:11:23.366][Infos][Booter]P2P initialization completed, port 0
+[15:11:23.366][Infos][Booter]NodeID:16Uiu2HAmSYxeaWmNMnN9ttTaEbn12FgiLMgUmsA8fHsiGYPfY939
+[15:11:23.366][Infos][Booter]Node Addrs 0:/ip6/fe80::1/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 1:/ip6/fe80::aede:48ff:fe00:1122/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 2:/ip6/fe80::434:d06d:7243:c6a8/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 3:/ip4/192.168.3.57/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 4:/ip6/fe80::305a:c1ff:fe45:998/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 5:/ip6/fe80::305a:c1ff:fe45:998/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 6:/ip6/fe80::f6e4:ce0f:2748:7045/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 7:/ip6/fe80::c0b6:c282:82d3:ee57/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 8:/ip6/fe80::95c:6523:1b:a5a2/tcp/59961
+[15:11:23.367][Infos][Booter]Node Addrs 9:/ip6/fe80::9b70:5fbf:f0d0:1317/tcp/59961
+[15:11:23.449][Infos][NodeMgr]Snlist init ok,Size:5
+[15:11:23.487][Error][Regist]User 'pollytestde1' registration failed!ServiceError 3:[P2P][QueryUserReqV2][1][/ip4/129.211.72.15/tcp/9999] COMM_ERROR:connection is shut down
+[15:48:08.893][Infos][Init]Starting pprof server on address 0.0.0.0:60336
+[15:48:08.925][Infos][Booter]P2P initialization completed, port 0
+[15:48:08.926][Infos][Booter]NodeID:16Uiu2HAkzdBbJwMb9Ft99PXUtq9MPsjjUGfvC8ABup5Cego5Lj4e
+[15:48:08.926][Infos][Booter]Node Addrs 0:/ip6/fe80::1/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 1:/ip6/fe80::aede:48ff:fe00:1122/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 2:/ip6/fe80::434:d06d:7243:c6a8/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 3:/ip4/192.168.3.57/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 4:/ip6/fe80::b841:5aff:fe0d:20f3/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 5:/ip6/fe80::b841:5aff:fe0d:20f3/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 6:/ip6/fe80::f6e4:ce0f:2748:7045/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 7:/ip6/fe80::c0b6:c282:82d3:ee57/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 8:/ip6/fe80::95c:6523:1b:a5a2/tcp/60337
+[15:48:08.926][Infos][Booter]Node Addrs 9:/ip6/fe80::9b70:5fbf:f0d0:1317/tcp/60337
+[15:48:09.075][Infos][NodeMgr]Snlist init ok,Size:5
+[15:48:09.139][Infos][Regist]User 'pollytestde1' registration successful,ID-KeyNumber:20/0,at sn 0
+[15:48:09.234][Infos][PreAllocNode]Return 17 nodes,Excludes 0 nodes.
