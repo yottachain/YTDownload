@@ -279,14 +279,15 @@ func (gc *GetCount) ToUsedTotal(bt float64) {
 }
 
 type DownLoadRate struct {
-	TokenSuccessRate  float64
-	ShardSuccessRate  float64
-	ConSuccessRate    float64
-	DownloadRate      float64
-	ConCount          int64 //连接总数
-	TokenCount        int64 //token总数 and 连接成功数
-	GetTokenSuccess   int64 //成功的token数量
-	ShardCountTotal   int64 //真实的分片
-	SuccessShardCount int64 //成功的分片数
-	ShardDownLoadFail int64 //下载失败的分片数
+	TokenSuccessRate  float64 //token 成功率
+	ShardSuccessRate  float64 //shard 成功率
+	ConSuccessRate    float64 // 链接成功率
+	DownloadRate      float64 // 下载速率
+	ConCount          int64   //连接总数
+	TokenCount        int64   //token总数 and 连接成功数
+	GetTokenSuccess   int64   //成功的token数量
+	ShardCountTotal   int64   //真实的分片
+	SuccessShardCount int64   //成功的分片数
+	ShardDownLoadFail int64   //下载失败的分片数
+	TimeTotal         float64 //下载总耗时，单位秒。
 }

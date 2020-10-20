@@ -6,11 +6,11 @@ import (
 	"DownloadNew/data"
 	"DownloadNew/downlog"
 	"DownloadNew/gorotine"
-	"DownloadNew/mongo"
+	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
-	"os"
+	"net/http"
 	"time"
 )
 
@@ -82,28 +82,32 @@ func writeRedisToMtrics() {
 	D.GetTokenSuccess = gorotine.R.GetTokenSuccess
 	D.ShardDownLoadFail = int64(gorotine.R.Senderr)
 	D.SuccessShardCount = int64(gorotine.R.Success)
-	c := mongo.Pool.Get()
-	defer c.Close()
-	data, err := json.Marshal(D)
-	t := time.Now()
-	filePtr, err := os.Create("/var/tmp/" + t.Format("2006-01-02 15:04:05"))
-	if err != nil {
-		fmt.Println("创建文件失败:", err)
-	}
-	writeString, err := filePtr.WriteString(string(data))
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println("------", writeString)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	_, errs := c.Do("Set", "DownLoadRate", data)
-	if errs != nil {
-		fmt.Println(errs)
-		return
-	}
+	D.TimeTotal = gorotine.R.UsedTotal
+	Post("http://192.168.6.137:8081/downloadRate", D, "application/json")
+	//c := mongo.Pool.Get()
+	//defer c.Close()
+	//
+	//data, err := json.Marshal(D)
+	//t := time.Now()
+	//filePtr, err := os.Create("/var/tmp/" + t.Format("2006-01-02 15:04:05"))
+	//if err != nil {
+	//	fmt.Println("创建文件失败:", err)
+	//}
+	//writeString, err := filePtr.WriteString(string(data))
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//fmt.Println("------", writeString)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//
+	//_, errs := c.Do("Set", "DownLoadRate", data)
+	//if errs != nil {
+	//	fmt.Println(errs)
+	//	return
+	//}
 	//r, err := redis.Bytes(c.Do("Get", "DownLoadRate"))
 	//if err != nil {
 	//	fmt.Println("get abc failed,", err)
@@ -111,4 +115,14 @@ func writeRedisToMtrics() {
 	//}
 	//err = json.Unmarshal(r, &D)
 	//fmt.Println("redis", D)
+}
+
+func Post(url string, data interface{}, contentType string) {
+	// 超时时间：5秒
+	client := &http.Client{Timeout: 5 * time.Second}
+	jsonStr, _ := json.Marshal(data)
+	_, err := client.Post(url, contentType, bytes.NewBuffer(jsonStr))
+	if err != nil {
+		panic(err)
+	}
 }
