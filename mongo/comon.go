@@ -5,9 +5,9 @@ import (
 )
 
 //const URL = "47.95.231.56:27020" //mogon分片集
-//const URL = "39.97.229.11:27017" //公网
+const URL = "39.97.229.11:27017" //公网
 //const URL = "122.152.203.189:27017"
-const URL = "139.155.46.242:27017" //研发网
+//const URL = "139.155.46.242:27017" //研发网
 
 var (
 	mgoSession *mgo.Session

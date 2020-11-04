@@ -210,6 +210,13 @@ type GetCount struct {
 	ConCount             int64
 	ShardCountTotal      int64
 	Net                  int
+	TokenRe              int64
+}
+
+func (gc *GetCount) ToTokenRe() {
+	lock.Lock()
+	defer lock.Unlock()
+	gc.TokenRe++
 }
 
 func (gc *GetCount) ToShardCountTotal() {
@@ -284,7 +291,7 @@ type DownLoadRate struct {
 	ConSuccessRate    float64 // 链接成功率
 	DownloadRate      float64 // 下载速率
 	ConCount          int64   //连接总数
-	TokenCount        int64   //token总数 and 连接成功数
+	TokenRequestCount int64   //token请求总数 and 连接成功数
 	GetTokenSuccess   int64   //成功的token数量
 	ShardCountTotal   int64   //真实的分片
 	SuccessShardCount int64   //成功的分片数

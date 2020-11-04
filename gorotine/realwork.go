@@ -127,6 +127,7 @@ func RetryToken(clt *hst.YTHostClient, n data.ShardAndNodeId) {
 	getTokenData, _ := proto.Marshal(&getToken)
 	//i:=0;i<10;i++
 	for i := 0; i < R.Notice; i++ {
+		R.ToTokenRe()
 		T.NoRetryToken(n.NodeId)
 		rectxto, recancels := context.WithTimeout(context.Background(), time.Second*5)
 		tok, err := clt.SendMsg(rectxto, message.MsgIDNodeCapacityRequest.Value(), getTokenData)
@@ -159,6 +160,7 @@ func ReTokenAgain(n data.ShardAndNodeId) {
 	G.ToGetTokenRe()
 	var a int
 	for i := 0; i < R.Notice; i++ {
+		R.ToTokenRe()
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
 		clt, err := client.Hst.ClientStore().GetByAddrString(ctx, client.N.NodeData[n.NodeId].NodeID, client.N.NodeData[n.NodeId].Addrs)
 		cancel()
