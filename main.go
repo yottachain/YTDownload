@@ -9,7 +9,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/opentracing/opentracing-go/log"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -17,79 +17,61 @@ import (
 )
 
 func main() {
-	//var skip int
-	//var limit int
-	//var num int
-	//var tnum int
-	//var retrynum int
-	//var Stime int
-	//var second int
-	//var mdata int
-	//var net int
-	//flag.IntVar(&skip, "s", 0, "起始位置，默认为0")
-	//flag.IntVar(&limit, "l", 500, "分片数量，默认为500")
-	//flag.IntVar(&num, "n", 500, "并发数量，默认为500")
-	//flag.IntVar(&tnum, "tn", 500, "token并发数量，默认为500")
-	//flag.IntVar(&retrynum, "r", 5, "重试次数，默认为5")
-	//flag.IntVar(&Stime, "t", 1, "时间范围，默认为1")
-	//flag.IntVar(&second, "sc", 10, "间隔秒数，默认为10")
-	//flag.IntVar(&mdata, "m", 0, "数据来源，默认为0")
-	//flag.IntVar(&net, "net", 0, "网络环境0研发网1主网，默认为0")
-	//flag.Parse() //解析命令行参数
 	skip := os.Getenv("SKIP")
 	SKIP, err := strconv.Atoi(skip)
 	if err != nil {
-		log.Error(err)
-		SKIP = 0
+		log.Println(err)
+		SKIP = 30
 	}
 	limit := os.Getenv("LIMIT")
 	LIMIT, err := strconv.Atoi(limit)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		LIMIT = 500
 	}
 	num := os.Getenv("NUM")
 	NUM, err := strconv.Atoi(num)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		NUM = 500
 	}
 	retrynum := os.Getenv("RETRY_NUM")
 	RETRY_NUM, err := strconv.Atoi(retrynum)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		RETRY_NUM = 5
 	}
 	Stime := os.Getenv("S_TIME")
 	S_TIME, err := strconv.Atoi(Stime)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		S_TIME = 3
 	}
 	second := os.Getenv("SECOND")
 	SECOND, err := strconv.Atoi(second)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		SECOND = 10
 	}
 	mdata := os.Getenv("M_DATA")
 	M_DATA, err := strconv.Atoi(mdata)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		M_DATA = 0
 	}
 	tnum := os.Getenv("T_NUM")
 	T_NUM, err := strconv.Atoi(tnum)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		T_NUM = 500
 	}
 	net := os.Getenv("NET")
 	NET, err := strconv.Atoi(net)
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 		NET = 1
 	}
+	fmt.Println(SKIP, LIMIT, NUM, RETRY_NUM, S_TIME, SECOND, M_DATA, T_NUM, NET)
 	DownLoadO(SKIP, LIMIT, NUM, RETRY_NUM, S_TIME, SECOND, M_DATA, T_NUM, NET)
 }
 
@@ -102,11 +84,11 @@ func DownLoadO(skip int, limit int, num int, retrynum int, Stime int, Ssecond in
 	bT := time.Now()
 	if mdata == 1 {
 		bedown.GetSharNodeDataK(skip, limit)
-		fmt.Println("downloading...", len(gorotine.MakeGetTokenMsg), len(client.N.NodeData))
+		fmt.Println("downloading...", len(gorotine.MakeGetTokenMsg))
 		gorotine.MakeGorotinesForShard(limit, num, tnum)
 	} else {
 		dataPrepare(skip, limit)
-		fmt.Println("downloading...", len(gorotine.MakeGetTokenMsg))
+		fmt.Println("downloading...", len(gorotine.MakeGetTokenMsg), len(client.N.NodeData))
 		gorotine.MakeGorotinesForShard(limit, num, tnum)
 	}
 	eT := time.Since(bT)
