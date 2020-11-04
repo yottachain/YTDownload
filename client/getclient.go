@@ -3,9 +3,6 @@ package client
 import (
 	"DownloadNew/mongo"
 	"fmt"
-	"gopkg.in/mgo.v2/bson"
-	"time"
-
 	//"github.com/yottachain/YTCoreService/api"
 	host "github.com/yottachain/YTHost"
 	inter "github.com/yottachain/YTHost/hostInterface"
@@ -26,10 +23,10 @@ func init() {
 	//	C = c
 	//}
 	//query := bson.M{"valid": 1, "status": 1, "assignedSpace": bson.M{"$gt": 0}, "quota": bson.M{"$gt": 0}, "weight": bson.M{"$gt": 0}, "version": bson.M{"$gte": 48}}
-	now := time.Now()
-	t := now.Add(time.Minute * -3)
-	query := bson.M{"timestamp": bson.M{"$gt": int(t.Unix())}}
-	node, _ := mongo.SearchNode("yotta", "Node", query, "", nil, 0, 0)
+	//now := time.Now()
+	//t := now.Add(time.Minute * -3)
+	//query := bson.M{"timestamp": bson.M{"$gt": int(t.Unix())}}
+	node, _ := mongo.SearchNode("yotta", "Node", nil, "", nil, 0, 0)
 	M := make(map[int32]mongo.Node)
 	for _, v := range node {
 		M[v.ID] = v
