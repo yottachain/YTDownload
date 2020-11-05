@@ -10,4 +10,4 @@ ENV GIN_MODE=release
 
 EXPOSE 8081
 
-ENTRYPOINT ["/app/download"]
+ENTRYPOINT ["/app/DownloadNew"]
