@@ -5,8 +5,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -17,14 +19,76 @@ func main() {
 	for i := range environ {
 		fmt.Println(environ[i])
 	}
-	fmt.Println("**************************")
-	goPath := os.Getenv("GOPATH")
-	fmt.Printf("GOPATH is %s\n", goPath)
-	//t := time.Now()
-	//time.Sleep(time.Second *10)
-	//b := time.Since(t)
-	//fmt.Printf("%T %v",b.Seconds(),b.Seconds())
+	skip := os.Getenv("SKIP")
+	SKIP, err := strconv.Atoi(skip)
+	if err != nil {
+		log.Println(err)
+		SKIP = 0
+	}
+	limit := os.Getenv("LIMIT")
+	LIMIT, err := strconv.Atoi(limit)
+	if err != nil {
+		log.Println(err)
+		LIMIT = 500
+	}
+	num := os.Getenv("NUM")
+	NUM, err := strconv.Atoi(num)
+	if err != nil {
+		log.Println(err)
+		NUM = 500
+	}
+	retrynum := os.Getenv("RETRY_NUM")
+	RETRY_NUM, err := strconv.Atoi(retrynum)
+	if err != nil {
+		log.Println(err)
+		RETRY_NUM = 5
+	}
+	Stime := os.Getenv("S_TIME")
+	S_TIME, err := strconv.Atoi(Stime)
+	if err != nil {
+		log.Println(err)
+		S_TIME = 3
+	}
+	second := os.Getenv("SECOND")
+	SECOND, err := strconv.Atoi(second)
+	if err != nil {
+		log.Println(err)
+		SECOND = 10
+	}
+	mdata := os.Getenv("M_DATA")
+	M_DATA, err := strconv.Atoi(mdata)
+	if err != nil {
+		log.Println(err)
+		M_DATA = 0
+	}
+	tnum := os.Getenv("T_NUM")
+	T_NUM, err := strconv.Atoi(tnum)
+	if err != nil {
+		log.Println(err)
+		T_NUM = 500
+	}
+	net := os.Getenv("NET")
+	NET, err := strconv.Atoi(net)
+	if err != nil {
+		log.Println(err)
+		NET = 1
+	}
+	fmt.Println(SKIP, LIMIT, NUM, RETRY_NUM, S_TIME, SECOND, M_DATA, T_NUM, NET)
 }
+
+//func main() {
+//	environ := os.Environ()
+//	for i := range environ {
+//		fmt.Println(environ[i])
+//	}
+//	fmt.Println("**************************")
+//	goPath := os.Getenv("GOPATH")
+//	fmt.Printf("GOPATH is %s\n", goPath)
+//	//t := time.Now()
+//	//time.Sleep(time.Second *10)
+//	//b := time.Since(t)
+//	//fmt.Printf("%T %v",b.Seconds(),b.Seconds())
+//}
 
 //func main() {
 //	D.ConSuccessRate = 0.9
