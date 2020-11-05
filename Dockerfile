@@ -4,7 +4,7 @@ LABEL desc="download service"
 LABEL src="https://github.com/yottachain/YTDownload.git"
 
 WORKDIR /app
-COPY ./download /app/download
+COPY ./DownloadNew /app/DownloadNew
 
 ENV GIN_MODE=release
 
