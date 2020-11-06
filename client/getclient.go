@@ -27,6 +27,7 @@ func init() {
 	//t := now.Add(time.Minute * -3)
 	//query := bson.M{"timestamp": bson.M{"$gt": int(t.Unix())}}
 	node, _ := mongo.SearchNode("yotta", "Node", nil, "", nil, 0, 0)
+
 	M := make(map[int32]mongo.Node)
 	for _, v := range node {
 		M[v.ID] = v

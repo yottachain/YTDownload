@@ -4,7 +4,6 @@ import (
 	"DownloadNew/bedown"
 	"DownloadNew/client"
 	"DownloadNew/data"
-	"DownloadNew/downlog"
 	"DownloadNew/gorotine"
 	"bytes"
 	"encoding/json"
@@ -80,8 +79,8 @@ func DownLoadO(skip int, limit int, num int, retrynum int, Stime int, Ssecond in
 	go gorotine.Performance(Stime, Ssecond)
 	gorotine.R.ShardCount = limit
 	gorotine.R.Notice = retrynum
-	logtotal := downlog.GetLog("total")
-	bT := time.Now()
+	//logtotal := downlog.GetLog("total")
+	//bT := time.Now()
 	if mdata == 1 {
 		bedown.GetSharNodeDataK(skip, limit)
 		fmt.Println("downloading...", len(gorotine.MakeGetTokenMsg))
@@ -91,13 +90,13 @@ func DownLoadO(skip int, limit int, num int, retrynum int, Stime int, Ssecond in
 		fmt.Println("downloading...", len(gorotine.MakeGetTokenMsg), len(client.N.NodeData))
 		gorotine.MakeGorotinesForShard(limit, num, tnum)
 	}
-	eT := time.Since(bT)
-	logtotal.Printf("msg=%v sharcount=%v success=%v sendfail=%v senderr=%v tcperr=%v GetTokenErr=%v GetTokenSuccess=%v concount===%v",
-		"下载分片统计信息", gorotine.R.ShardCountTotal, gorotine.R.Success, gorotine.R.Sendfail, gorotine.R.Senderr, gorotine.R.Adderr, gorotine.R.GetTokenFail, gorotine.R.GetTokenSuccess, gorotine.R.ConCount)
-	logtotal.Printf("msg=%v 下载总耗时=%v 下载成功率%v 下载速率%v 下载成功速率%v",
-		"下载速率统计", eT, float64(gorotine.R.Success)/float64(gorotine.R.ShardCountTotal), float64(gorotine.R.ShardCountTotal*16)/gorotine.R.UsedTotal/1024, float64(gorotine.R.Success*16)/gorotine.R.UsedTotal/1024)
-	fmt.Printf("%T %v\n", gorotine.R.UsedTotal, gorotine.R.UsedTotal)
-	fmt.Printf("%T %v\n", gorotine.R.GetTokenErr, gorotine.R.GetTokenErr)
+	//eT := time.Since(bT)
+	//logtotal.Printf("msg=%v sharcount=%v success=%v sendfail=%v senderr=%v tcperr=%v GetTokenErr=%v GetTokenSuccess=%v concount===%v",
+	//	"下载分片统计信息", gorotine.R.ShardCountTotal, gorotine.R.Success, gorotine.R.Sendfail, gorotine.R.Senderr, gorotine.R.Adderr, gorotine.R.GetTokenFail, gorotine.R.GetTokenSuccess, gorotine.R.ConCount)
+	//logtotal.Printf("msg=%v 下载总耗时=%v 下载成功率%v 下载速率%v 下载成功速率%v",
+	//	"下载速率统计", eT, float64(gorotine.R.Success)/float64(gorotine.R.ShardCountTotal), float64(gorotine.R.ShardCountTotal*16)/gorotine.R.UsedTotal/1024, float64(gorotine.R.Success*16)/gorotine.R.UsedTotal/1024)
+	//fmt.Printf("%T %v\n", gorotine.R.UsedTotal, gorotine.R.UsedTotal)
+	//fmt.Printf("%T %v\n", gorotine.R.GetTokenErr, gorotine.R.GetTokenErr)
 	gorotine.T.PrintNode()
 	writeRedisToMtrics()
 }
@@ -159,8 +158,9 @@ func Post(url string, data interface{}, contentType string) {
 	// 超时时间：5秒
 	client := &http.Client{Timeout: 5 * time.Second}
 	jsonStr, _ := json.Marshal(data)
-	dnrpclog := downlog.GetLog("dnrpc")
-	dnrpclog.Println("dnrpc", string(jsonStr))
+	//dnrpclog := downlog.GetLog("dnrpc")
+	//dnrpclog.Println("dnrpc", string(jsonStr))
+	fmt.Println("metrics", string(jsonStr))
 	_, err := client.Post(url, contentType, bytes.NewBuffer(jsonStr))
 	if err != nil {
 		panic(err)

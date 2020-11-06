@@ -257,7 +257,7 @@ func DoDownLoadForData(n *mongo.Shard) {
 	defer cancel()
 	_, err := client.Hst.ClientStore().GetByAddrString(ctx, client.N.NodeData[n.NodeId].NodeID, client.N.NodeData[n.NodeId].Addrs)
 	if err != nil {
-		fmt.Println("DoDownLoadForData", err)
+		//fmt.Println("DoDownLoadForData", err)
 	} else {
 		if int(I) < R.ShardCount {
 			sn := data.ShardAndNodeId{ShardVHF: n.VHF, NodeId: n.NodeId}
