@@ -1,4 +1,4 @@
-FROM registry.cn-beijing.aliyuncs.com/ytc-common/alpine:3
+FROM harbor1-c3-bj.yottachain.net/yt-common/nginx:alpine
 LABEL maintainer="yuanye@yottachain.io"
 LABEL desc="download service"
 LABEL src="https://github.com/yottachain/YTDownload.git"
