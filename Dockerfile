@@ -1,4 +1,4 @@
-FROM harbor1-c3-bj.yottachain.net/yt-common/nginx:alpine
+FROM harbor1-c3-bj.yottachain.net/yt-common/alpine:3
 LABEL maintainer="yuanye@yottachain.io"
 LABEL desc="download service"
 LABEL src="https://github.com/yottachain/YTDownload.git"
