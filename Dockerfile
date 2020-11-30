@@ -8,6 +8,6 @@ COPY ./DownloadNew /app/DownloadNew
 
 ENV GIN_MODE=release
 
-EXPOSE 8081
+EXPOSE 80810
 
 ENTRYPOINT ["/app/DownloadNew"]
